@@ -10,18 +10,13 @@
 </head>
 <body>
     <?php 
-      require_once("../../components/navbar.html");
+        require_once("../../components/navbar.html");
     ?>
 
     <div class="container my-5">
         <h1>Agregar bicicleta</h1>
             <br>
-            <form method="post" enctype="multipart/form-data">
-
-                <div class="form-element mb-3">
-                    <label for="nombre" class="form-label">Portada</label>
-                    <input type="file" name="imagen" id="imagen" class="form-control">
-                </div>
+            <form method="post" action="../controller/bicicletas.php" enctype="multipart/form-data">
 
                 <div class="form-element mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -36,7 +31,7 @@
                 </div>
 
                 <div class="text-end">
-                    <button type="button" id="btnAgregar" name="btnAgregar" class="btn btn-primary">Agregar bicicleta</button>
+                    <button type="submit" id="btnAgregar" name="btnAgregar" class="btn btn-primary">Agregar bicicleta</button>
                 </div>
             </form>
   

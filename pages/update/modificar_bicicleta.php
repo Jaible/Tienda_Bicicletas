@@ -10,36 +10,43 @@
 </head>
 <body>
     <?php 
-      require_once("../../components/navbar.html");
+        require_once("../../components/navbar.html");
+        include_once("../conexionDB.php");
+        $conn = abrirConexion();
+        $query = 'SELECT id_bicicletas, nombre, precio FROM bicicletas WHERE id_bicicletas = :id';
+        $stid = oci_parse($conn, $query);
+        oci_bind_by_name($stid, ':id', $_GET["id"]);
+        oci_execute($stid);
     ?>
 
     <div class="container my-5">
         <h1>Modificar bicicleta</h1>
             <br>
-            <form method="post" enctype="multipart/form-data">
+            <?php
+            while (($row = oci_fetch_assoc($stid)) != false){
+            ?>
+            <form method="post" action="../controller/modificarBicicletas.php" enctype="multipart/form-data">
 
                 <div class="form-element mb-3">
-                    <label for="nombre" class="form-label">Portada</label>
-                    <input type="file" name="imagen" id="imagen" class="form-control">
-                </div>
-
-                <div class="form-element mb-3">
+                    <input type="hidden" id="id" name="id" value="<?php echo $_GET["id"] ?>">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" name="nombre" placeholder="Digite el nombre"
+                    <input type="text" name="nombre" placeholder="Digite el nombre" value="<?php echo $row['NOMBRE'] ?>"
                         id="nombre" class="form-control">
                 </div>
 
                 <div class="form-element mb-3">
                     <label for="precio" class="form-label">Precio</label>
-                    <input type="number" name="precio" placeholder="Digite el precio"
+                    <input type="number" name="precio" placeholder="Digite el precio" value="<?php echo $row['PRECIO'] ?>"
                         id="precio" class="form-control">
                 </div>
 
                 <div class="text-end">
-                    <button type="button" id="btnAgregar" name="btnAgregar" class="btn btn-primary">Modificar bicicleta</button>
+                    <button type="submit" id="btnAgregar" name="btnAgregar" class="btn btn-primary">Modificar bicicleta</button>
                 </div>
             </form>
-  
+            <?php
+                }
+            ?>
          </div>
     </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

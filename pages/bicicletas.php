@@ -9,8 +9,14 @@
 </head>
 <body>
     <?php 
-      require_once("../components/navbar.html");
+        require_once("../components/navbar.html");
+        include_once("conexionDB.php");
+        $conn = abrirConexion();
+        $query = 'SELECT id_bicicletas, nombre, precio FROM bicicletas';
+        $stid = oci_parse($conn, $query);
+        oci_execute($stid);
     ?>
+
 
     <div class="container my-5">
         <h1>Registro de bicicletas</h1>
@@ -20,25 +26,29 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Imagen</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Precio</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
+            <?php
+            while (($row = oci_fetch_assoc($stid)) != false){
+            ?>
                 <tr>
-                    <th scope="row">1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $row['ID_BICICLETAS'] ?></td>
+                    <td><?php echo $row['NOMBRE'] ?></td>
+                    <td><?php echo $row['PRECIO'] ?></td>
                     <td>
                         <div class="flex flex-column">
-                            <a href="./update/modificar_bicicleta.php?id=" class="btn btn-primary">Modificar</a>
-                            <a href="" class="btn btn-danger">Eliminar</a>
+                            <a href="./update/modificar_bicicleta.php?id=<?php echo $row['ID_BICICLETAS'] ?>" class="btn btn-primary">Modificar</a>
+                            <a href="./delete/eliminarBicicleta.php?id=<?php echo $row['ID_BICICLETAS'] ?>" class="btn btn-danger">Eliminar</a>
                         </div>
                     </td>
                 </tr>
+                <?php
+                }
+                ?>
             </tbody>
         </table>
     </div>
