@@ -27,11 +27,10 @@
 
 
 <div class="container">
-    <h1 class="mt-5">Cantidad de bicicletas registradas</h1>
     <table class="table mt-3">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Cantidad</th>
+          <th scope="col">Cantidad de bicicletas registradas</th>
         </tr>
       </thead>
       <tbody>
