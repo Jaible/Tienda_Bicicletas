@@ -8,10 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-    <?php 
-      require_once("../components/navbar.html");
+<?php 
+        require_once("../components/navbar.html");
+        include_once("conexionDB.php");
+        $conn = abrirConexion();
+        $query = 'SELECT id_proveedor, nombre FROM proveedores';
+        $stid = oci_parse($conn, $query);
+        oci_execute($stid);
     ?>
-
     <div class="container my-5">
         <h1>Registro de Proveedores</h1>
         <a href="./insert/agregar_proveedor.php" class="btn btn-primary m-2">Agregar proveedor</a>
@@ -25,16 +29,23 @@
                 </tr>
             </thead>
             <tbody>
+            <?php
+            while (($row = oci_fetch_assoc($stid)) != false){
+            ?>
                 <tr>
-                    <th scope="row">1</th>
-                    <td></td>
+                    
+                <td><?php echo $row['ID_PROVEEDOR'] ?></td>
+                    <td><?php echo $row['NOMBRE'] ?></td>
                     <td>
                         <div class="flex flex-column">
-                            <a href="./update/modificar_proveedor.php?id=" class="btn btn-primary">Modificar</a>
-                            <a href="" class="btn btn-danger">Eliminar</a>
+                            <a href="./update/modificar_bicicleta.php?id=<?php echo $row['ID_PROVEEDOR'] ?>" class="btn btn-primary">Modificar</a>
+                            <a href="./delete/eliminarBicicleta.php?id=<?php echo $row['ID_PROVEEDOR'] ?>" class="btn btn-danger">Eliminar</a>
                         </div>
                     </td>
                 </tr>
+                <?php
+                }
+                ?>
             </tbody>
         </table>
     </div>

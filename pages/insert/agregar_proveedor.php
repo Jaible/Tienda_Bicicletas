@@ -16,7 +16,7 @@
     <div class="container my-5">
         <h1>Agregar proveedor</h1>
             <br>
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" action="../controller/proveedores.php" enctype="multipart/form-data">
 
                 <div class="form-element mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
