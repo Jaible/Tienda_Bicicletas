@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="text-end">
-                    <button type="button" id="btnAgregar" name="btnAgregar" class="btn btn-primary">Agregar proveedor</button>
+                    <button type="submit" id="btnAgregar" name="btnAgregar" class="btn btn-primary">Agregar proveedor</button>
                 </div>
             </form>
   

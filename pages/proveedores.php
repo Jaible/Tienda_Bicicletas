@@ -38,8 +38,8 @@
                     <td><?php echo $row['NOMBRE'] ?></td>
                     <td>
                         <div class="flex flex-column">
-                            <a href="./update/modificar_bicicleta.php?id=<?php echo $row['ID_PROVEEDOR'] ?>" class="btn btn-primary">Modificar</a>
-                            <a href="./delete/eliminarBicicleta.php?id=<?php echo $row['ID_PROVEEDOR'] ?>" class="btn btn-danger">Eliminar</a>
+                            <a href="./update/modificar_proveedor.php?id=<?php echo $row['ID_PROVEEDOR'] ?>" class="btn btn-primary">Modificar</a>
+                            <a href="./delete/eliminarProveedor.php?id=<?php echo $row['ID_PROVEEDOR'] ?>" class="btn btn-danger">Eliminar</a>
                         </div>
                     </td>
                 </tr>
