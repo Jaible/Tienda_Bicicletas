@@ -9,7 +9,12 @@
 </head>
 <body>
     <?php 
-      require_once("../components/navbar.html");
+        require_once("../components/navbar.html");
+        include_once("conexionDB.php");
+        $conn = abrirConexion();
+        $query = 'SELECT ID_CATEGORIA, DESCRIPCION FROM CATEGORIAS';
+        $stid = oci_parse($conn, $query);
+        oci_execute($stid)
     ?>
 
     <div class="container my-5">
@@ -25,16 +30,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td></td>
-                    <td>
-                        <div class="flex flex-column">
-                            <a href="./update/modificar_categoria.php?id=" class="btn btn-primary">Modificar</a>
-                            <a href="" class="btn btn-danger">Eliminar</a>
-                        </div>
-                    </td>
-                </tr>
+                <?php
+                while (($row = oci_fetch_assoc($stid)) != false){
+                ?>
+                    <tr>
+                        <td><?php echo $row['ID_CATEGORIA'] ?></td>
+                        <td><?php echo $row['DESCRIPCION'] ?></td>
+                        <td>
+                            <div class="flex flex-column">
+                                <a href="./update/modificar_categoria.php?id=<?php echo $row['ID_CATEGORIA'] ?>" class="btn btn-primary">Modificar</a>
+                                <a href="./delete/eliminarCategoria.php?id=<?php echo $row['ID_CATEGORIA'] ?>" class="btn btn-danger">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
             </tbody>
         </table>
     </div>

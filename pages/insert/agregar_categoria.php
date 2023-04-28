@@ -16,7 +16,7 @@
     <div class="container my-5">
         <h1>Agregar categoria</h1>
             <br>
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data" action="../controller/categorias.php">
 
                 <div class="form-element mb-3">
                     <label for="descripcion" class="form-label">Descripcion</label>
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="text-end">
-                    <button type="button" id="btnAgregar" name="btnAgregar" class="btn btn-primary">Agregar categoria</button>
+                    <button type="submit" id="btnAgregar" name="btnAgregar" class="btn btn-primary">Agregar categoria</button>
                 </div>
             </form>
   
