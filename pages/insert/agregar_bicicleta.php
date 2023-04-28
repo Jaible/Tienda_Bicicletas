@@ -26,7 +26,7 @@
 
                 <div class="form-element mb-3">
                     <label for="precio" class="form-label">Precio</label>
-                    <input type="number" name="precio" placeholder="Digite el precio"
+                    <input type="number" step="0.01" name="precio" placeholder="Digite el precio"
                         id="precio" class="form-control">
                 </div>
 

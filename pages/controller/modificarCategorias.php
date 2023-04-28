@@ -3,7 +3,7 @@
     include_once("../conexionDB.php");
     $conn = abrirConexion();
     $descripcion = $_POST["descripcion"];
-    $descripcion = $_POST["id"];
+    $id = $_POST["id"];
     $query = "UPDATE CATEGORIAS SET descripcion = :descripcion WHERE id_categoria = :id_categoria";
     $stid = oci_parse($conn, $query);
     oci_bind_by_name($stid, ':descripcion', $descripcion);

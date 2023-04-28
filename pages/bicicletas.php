@@ -16,14 +16,13 @@
         $stid = oci_parse($conn, $query);
         oci_execute($stid);
     ?>
-    <?php
+  <?php
 
   // obtener_cantidad_bicicletas
   $stmt = oci_parse($conn, 'BEGIN :cantidad := bicicletas_pkg.obtener_cantidad_bicicletas(); END;');
   oci_bind_by_name($stmt, ':cantidad', $cantidad, 32);
   oci_execute($stmt);
 ?>
-<!-- prueba -->
 
 
 <div class="container">
@@ -56,9 +55,6 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-
-            Prueba
-
             <tbody>
             <?php
             while (($row = oci_fetch_assoc($stid)) != false){

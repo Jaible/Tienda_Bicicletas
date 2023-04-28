@@ -10,8 +10,8 @@
 </head>
 <body>
     <?php 
-        require_once("../components/navbar.html");
-        include_once("conexionDB.php");
+        require_once("../../components/navbar.html");
+        include_once("../conexionDB.php");
         $conn = abrirConexion();
         $query = 'SELECT ID_CATEGORIA, DESCRIPCION FROM CATEGORIAS WHERE ID_CATEGORIA = :id';
         $stid = oci_parse($conn, $query);
