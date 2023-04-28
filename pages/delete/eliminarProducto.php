@@ -1,11 +1,11 @@
 <?php
         include_once("../conexionDB.php");
         $conn = abrirConexion();
-		$nombre = $_POST["nombre"];
-		$id = $_POST["id"];
-        $query = "UPDATE proveedores SET nombre = :nombre WHERE id_proveedor = :id";
+		$id = $_GET["id"];
+        $query = "DELETE FROM PRODUCTOS WHERE ID_PRODUCTO = :id";
         $stid = oci_parse($conn, $query);
-		oci_bind_by_name($stid, ':nombre', $nombre);
 		oci_bind_by_name($stid, ':id', $id);
         oci_execute($stid);
-    ?>
+
+        header("Location: ../productos.php");
+?>

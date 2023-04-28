@@ -1,11 +1,12 @@
-<?php
+	<?php
         include_once("../conexionDB.php");
         $conn = abrirConexion();
 		$nombre = $_POST["nombre"];
-		$id = $_POST["id"];
-        $query = "UPDATE proveedores SET nombre = :nombre WHERE id_proveedor = :id";
+		$precio = $_POST["precio"];
+        $query = "INSERT INTO productos (nombre, precio) VALUES (:nombre, :precio)";
         $stid = oci_parse($conn, $query);
 		oci_bind_by_name($stid, ':nombre', $nombre);
-		oci_bind_by_name($stid, ':id', $id);
+		oci_bind_by_name($stid, ':precio', $precio);
         oci_execute($stid);
     ?>
+	
